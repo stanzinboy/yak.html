@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yak Cafe | High Altitude Flavors</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Georgia', serif; }
+        body { background-color: #fdfaf5; color: #4a3728; }
+
+        /* Navigation */
+        nav {
+            background: #4a3728;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; }
+
+        .menu-container { position: relative; }
+
+        /* The Three Lines (Hamburger) */
+        .menu-icon {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #5d4636;
+            width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        .nav-links.active { display: block; }
+
+        .nav-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-bottom: 1px solid #6f5849;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover { background: #7a5d48; }
+
+        /* Content Sections */
+        .content-section {
+            display: none; 
+            padding: 4rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        #about { display: block; } /* Show only About Us on load */
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .yak-photo {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        h1, h2 { color: #8b5e34; margin-bottom: 1rem; }
+        p { font-size: 1.2rem; line-height: 1.8; }
+        
+        .card { background: white; padding: 25px; border-radius: 12px; margin: 15px 0; border-left: 5px solid #8b5e34; text-align: left; }
+
+        /* Form Styling */
+        input, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+        button { background: #4a3728; color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #5d4636; }
+
+        footer { text-align: center; padding: 2rem; font-size: 0.9rem; color: #8b5e34; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">YAK CAFE</div>
+        <div class="menu-container">
+            <div class="menu-icon" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                
+                <a onclick="showSection('services')">Our Services</a>
+                <a onclick="showSection('reviews')">Customer Reviews</a>
+                <a onclick="showSection('contact')">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="content-section">
+        <img src="yak">
+        <h1>Welcome to Yak Cafe</h1>
+        <p>
+            The Yak Cafe is a sanctuary for mountain lovers. 
+            Located in the serene highlands, we serve traditional flavors with a modern twist. 
+            Step inside for the cozy atmosphere, stay for the legendary Yak coffee.
+        </p>
+    </section>
+
+    <section id="services" class="content-section">
+        <h2>Our Services</h2>
+        <div class="card">
+            <h3>☕ Gourmet Coffee</h3>
+            <p>Locally roasted beans brewed by our expert baristas.</p>
+        </div>
+        <div class="card">
+            <h3>🥖 Fresh Bakery</h3>
+            <p>Traditional bread and pastries made daily.</p>
+        </div>
+    </section>
+
+    <section id="reviews" class="content-section">
+        <h2>Customer Reviews</h2>
+        
+        <div class="card" style="background: #efe6dd; border-left: none; text-align: center;">
+            <h3>Leave a Review</h3>
+            <input type="text" id="reviewerName" placeholder="Your Name">
+            <textarea id="reviewText" placeholder="Share your experience..." rows="3"></textarea>
+            <button onclick="addReview()">Submit Review</button>
+        </div>
+
+        <div id="reviewsList">
+            <div class="card">
+                <p>"The best coffee and view I've ever had. Truly magical!"</p>
+                <small>— James P.</small>
+            </div>
+        </div>
+    </section>
+<section id="contact" class="content-section">
+        <h2>Contact Us</h2>
+        <div class="card" style="margin: 0 auto; max-width: 500px;">
+            <p><strong>📍 Address:</strong><br> 123 Alpine Way, Highland Valley</p><br>
+            <p><strong>✉️ Email:</strong><br> <a href="mailto:hello@yakcafe.com" style="color: #8b5e34;">hello@yakcafe.com</a></p><br>
+            <p><strong>🕒 Hours:</strong><br> Mon - Sun: 8:00 AM - 8:00 PM</p><br>
+            
+            <div style="text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <a href="tel:+123456789" style="text-decoration: none; color: white; background: #8b5e34; padding: 10px 20px; border-radius: 20px; display: inline-block; width: 200px; font-weight: bold;">
+                    📞 Call Us Now
+                </a>
+
+                <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: white; background: #E1306C; padding: 10px 20px; border-radius: 20px; display: inline-block; width: 200px; font-weight: bold;">
+                    📸 Follow Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        &copy; 2026 Yak Cafe | Established in the Clouds
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(sec => sec.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+            document.getElementById('navLinks').classList.remove('active');
+            window.scrollTo(0,0);
+        }
+
+        function addReview() {
+            const name = document.getElementById('reviewerName').value;
+            const text = document.getElementById('reviewText').value;
+            if (name && text) {
+                const list = document.getElementById('reviewsList');
+                const newReview = document.createElement('div');
+                newReview.className = 'card';
+                newReview.innerHTML = `<p>"${text}"</p><small>— ${name}</small>`;
+                list.prepend(newReview);
+                document.getElementById('reviewerName').value = '';
+                document.getElementById('reviewText').value = '';
+            } else {
+                alert("Please fill out both name and review!");
+            }
+        }
+    </script>
+
+</body>
+</html>
